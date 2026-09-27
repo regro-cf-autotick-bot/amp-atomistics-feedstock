@@ -6,17 +6,18 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/amp-atomistics-{{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/amp-atomistics-{{ version }}.tar.gz
   sha256: 91c097930f71534bbd8cedc922ef35a2883ab2e10587e1e95c04ce23ad34233f
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 2
+  number: 3
   skip: true  # [not linux]
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('fortran') }}
   host:
     - python
